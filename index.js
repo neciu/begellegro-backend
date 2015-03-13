@@ -15,6 +15,37 @@ function findObjectById(collection, id) {
     })[0];
 }
 
+app.post('/push-tokens', function (req, res) {
+    ['email', 'token'].map(function (key) {
+        if (!req.body.hasOwnProperty(key)) {
+            res.status(400);
+            res.send('Missing key: ' + key);
+        }
+    });
+
+    var friend = db.friends.filter(function (friend) {
+        return friend === req.body.email;
+    });
+    if (!friend) {
+        res.status(404);
+        res.send('No friend for id: ' + friendId);
+    }
+
+    var pushToken = db.pushTokens.filter(function(pushToken){
+        return pushToken.userId == friend.id;
+    })[0];
+    if (pushToken) {
+        pushToken.token = req.body.token;
+    } else {
+        db.pushTokens.push({
+            userId: friend.id,
+            token: req.body.token
+        });
+    }
+
+    res.sendStatus(204);
+});
+
 app.get('/auctions', function (req, res) {
     res.send(db.auctions);
 });
@@ -34,7 +65,7 @@ app.get('/friends', function (req, res) {
 
 app.post('/begs', function (req, res) {
     ['auctionId', 'friendsId'].map(function (key) {
-        if (!req.body.hasOwnProperty('auctionId')) {
+        if (!req.body.hasOwnProperty(key)) {
             res.status(400);
             res.send('Missing key: ' + key);
         }
@@ -56,7 +87,7 @@ app.post('/begs', function (req, res) {
     });
 
     req.body.friendsId.map(function (friendId) {
-        for(var i = 0; i < db.begs.length; i++) {
+        for (var i = 0; i < db.begs.length; i++) {
             var beg = db.begs[i];
             if (beg.auctionId == req.body.auctionId && beg.friendId == friendId) {
                 return;
@@ -69,7 +100,7 @@ app.post('/begs', function (req, res) {
         });
     });
 
-    var begs = db.begs.filter(function(beg){
+    var begs = db.begs.filter(function (beg) {
         return beg.auctionId == req.body.auctionId;
     });
 
