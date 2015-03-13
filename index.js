@@ -16,10 +16,10 @@ function findObjectById(collection, id) {
 }
 
 app.get('/auctions', function (req, res) {
-    res.send(db.friends.auctions);
+    res.send(db.auctions);
 });
 
-app.get('/auction/:id', function (req, res) {
+app.get('/auctions/:id', function (req, res) {
     var auction = findObjectById('auctions', req.params.id);
     auction ? res.send(auction) : res.sendStatus(404);
 });
@@ -32,7 +32,7 @@ app.get('/friends', function (req, res) {
     res.send(friends);
 });
 
-app.post('/beg', function (req, res) {
+app.post('/begs', function (req, res) {
     ['auctionId', 'friendsId'].map(function (key) {
         if (!req.body.hasOwnProperty('auctionId')) {
             res.status(400);
