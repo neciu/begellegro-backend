@@ -15,6 +15,10 @@ function findObjectById(collection, id) {
     })[0];
 }
 
+app.get('/auctions', function (req, res) {
+    res.send(db.friends.auctions);
+});
+
 app.get('/auction/:id', function (req, res) {
     var auction = findObjectById('auctions', req.params.id);
     auction ? res.send(auction) : res.sendStatus(404);
