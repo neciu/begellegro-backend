@@ -1,0 +1,39 @@
+{
+  "auctions": [
+    {
+      "id": 5138583097,
+      "imageUrl": "http://img04.allegroimg.pl/photos/oryginal/51/38/58/30/5138583097",
+      "title": "@-@ ROWER HOLENDERKA HOLENDER CZERWONY LUB CZARNY",
+      "price": 38999,
+      "city": "PIOTRKÓW TRYBUNALSKI"
+    },
+    {
+      "id": 5164261859,
+      "imageUrl": "http://img02.allegroimg.pl/photos/oryginal/51/64/26/18/5164261859",
+      "title": "Zbiór zadań z analizy matematycznej",
+      "price": 500,
+      "city": "Kielce"
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "imageUrl": "http://placehold.it/300&text=Aleksander",
+      "name": "Aleksander Piotrowski",
+      "email": "pelotasplus@gmail.com"
+    },
+    {
+      "id": 2,
+      "imageUrl": "http://placehold.it/300&text=Tomasz",
+      "name": "Tomasz Grynfelder",
+      "email": "tomasz.grynfelder@polidea.com"
+    },
+    {
+      "id": 3,
+      "imageUrl": "http://placehold.it/300&text=Neciu",
+      "name": "Tomasz Netczuk",
+      "email": "netczuk.tomasz@gmail.com"
+    }
+  ],
+  "begs": []
+}
