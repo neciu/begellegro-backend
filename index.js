@@ -24,11 +24,11 @@ app.post('/push-tokens', function (req, res) {
     });
 
     var friend = db.friends.filter(function (friend) {
-        return friend === req.body.email;
-    });
+        return friend.email == req.body.email;
+    })[0];
     if (!friend) {
         res.status(404);
-        res.send('No friend for id: ' + friendId);
+        res.send('No friend for email: ' + req.body.email);
     }
 
     var pushToken = db.pushTokens.filter(function(pushToken){
@@ -42,8 +42,11 @@ app.post('/push-tokens', function (req, res) {
             token: req.body.token
         });
     }
+    pushToken = db.pushTokens.filter(function(pushToken){
+        return pushToken.userId == friend.id;
+    })[0];
 
-    res.sendStatus(204);
+    res.send(pushToken);
 });
 
 app.get('/auctions', function (req, res) {
