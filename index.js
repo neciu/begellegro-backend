@@ -16,7 +16,7 @@ function findObjectById(collection, id) {
 }
 
 app.get('/auction/:id', function (req, res) {
-    var auction = findObjectById('auction', req.params.id);
+    var auction = findObjectById('auctions', req.params.id);
     auction ? res.send(auction) : res.sendStatus(404);
 });
 
